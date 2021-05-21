@@ -1,0 +1,386 @@
+@mixin respond($breakpoint){
+
+    @if $breakpoint == phone {
+        @media (max-width: 37.5em) { @content }; //600px
+    }
+
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) { @content }; //900px
+    }
+
+    @if $breakpoint == tab-land {
+        @media (max-width: 75em) { @content }; //1200px
+    }
+
+    @if $breakpoint == big-desktop {
+        @media (min-width: 112.5em) { @content }; //1800
+    }
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* Forces inheritance */ }
+
+html {
+  font-size: 62.5%;
+  /* 10px out of standard 16px */ 
+    margin: 3rem;
+
+    @include respond(big-desktop){
+        font-size: 75%;
+    }
+
+    @include respond(tab-land){
+        font-size: 56.25%;
+    }
+
+    @include respond(tab-port){
+        font-size: 50%;
+    }
+
+    @include respond(phone){
+        font-size: 50%;
+    }
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  /*Universal Font Choice */
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: #FFF;
+  padding: 3rem;
+  box-sizing: border-box; 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+}
+
+.header-content{
+    border: 3px double white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 4rem;
+}
+.header{
+    width: 80vw;
+    height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    //background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.8));
+    background-color: rgba(51, 51, 51, 0.6);
+    margin-top: -6rem;
+}
+.main-header{
+    font-size: 6rem;
+    margin-top: -5rem;
+
+}
+
+.logo {
+    width:10rem;
+    height: 10rem;
+    z-index: 2;
+    background-color: transparent;
+}
+
+.btn:link,
+.btn:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block; /* Use with Padding */
+    border-radius: 10rem;
+    transition: all .2s; /* Sets initial state */
+    position: relative;
+    padding: 1.5rem 4rem;
+    font-size: 1.6rem;
+
+    @include respond(tab-land){
+        font-size: 1.4rem;
+        padding: 1rem 2rem;
+    }
+
+    @include respond(phone){
+        padding: 1.5rem 4rem;
+        font-size: 1.6rem;
+    }
+}
+
+.btn--white{
+    background-color: #fff;
+    color: #000;
+}
+
+.btn:hover{
+    transform: translateY(-.3rem);
+    box-shadow: 0 1rem 2rem rgba(0,0,0,.4);
+}
+
+.btn:active{
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.4);
+}
+
+
+  .row{
+    background-image: linear-gradient(to right bottom, rgba(94, 206, 221, 0.4), rgba(12, 105, 128, 0.4));
+    height: 33vh;
+    width: 40vw;
+    margin: 1.3rem auto;
+    display: flex;
+
+    @include respond(tab-land){
+        width: 70vw;
+        height: 40vh;
+    }
+
+    @include respond(tab-port){
+        width: 70vw;
+        height: 40vh;
+    }
+
+    @include respond(phone){
+        width: 70vw;
+    }
+
+    &-1{
+        @include respond(phone){
+            height: 100vh;
+            flex-direction: column;
+        } 
+    }
+
+    &-2{
+        @include respond(phone){
+            height: 100vh;
+            flex-direction: column-reverse;
+        } 
+
+    }
+
+    &-3{
+        @include respond(phone){
+            height: 100vh;
+            flex-direction: column;
+        } 
+    }
+  }
+
+  .card{
+      perspective: 150rem;
+      -moz-perspective: 150rem;
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+    @include respond(phone){
+        height: 50%;
+        }
+  }
+
+  .card__side{
+      width: 100%;
+      transition: all 1s;
+      height: 100%;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      backface-visibility: hidden;
+      box-shadow: 0 1.5rem 4rem rgba(0,0,0, .15);
+  }
+
+  .card__side--front-1{
+    background-image:
+    linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(12, 105, 128, 0.2)), url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3BhfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80');
+    background-size: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+  .card__side--front-2{
+        background-image: 
+        linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(12, 105, 128, 0.2)),
+        url('https://www.omnihotels.com/-/media/images/globals/spa/candles-and-towel-154418691.jpg?h=660&la=en&w=1170');
+        background-size: cover;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+
+  .card__side--front-3{
+        background-image:
+        linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(12, 105, 128, 0.2)), url('https://cdn.aarp.net/content/dam/aarp/entertainment/beauty-and-style/2018/08/1140-candlelight.web.jpg');
+        background-size: cover;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card__side--back{
+    transform: rotateY(180deg);
+    }
+
+  .card:hover .card__side--front-1{
+    transform: rotateY(-180deg);
+  }
+
+  .card:hover .card__side--front-2{
+    transform: rotateY(-180deg);
+  }
+
+  .card:hover .card__side--front-3{
+    transform: rotateY(-180deg);
+  }
+
+  .card:hover .card__side--back{
+    transform: rotateY(0);
+  }
+
+  .card__heading{
+      font-size: 1.5rem;
+      position: relative;
+      @include respond(phone){
+        font-size: 2.2rem;
+    } 
+  }
+
+  .card__heading-span{
+      background-image: linear-gradient(to right, rgba(94, 206, 221, 0.5), rgba(12, 105, 128, 0.5));
+      padding: 1rem 1rem;
+  }
+
+  .card__heading-anchor{
+      font-size: 1.5rem;
+      background-image: linear-gradient(to right, rgba(94, 206, 221, 0.5), rgba(12, 105, 128, 0.5));
+      padding: 1rem 1rem;
+
+      @include respond(phone){
+        font-size: 2.2rem;
+    } 
+  }
+
+  .card__details{
+      font-size: 1.2rem;
+      
+    @include respond(tab-land){
+        font-size: 1.5rem;
+    }
+
+      @include respond(phone){
+        font-size: 2rem;
+    } 
+
+      border: 2px dashed white;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+  }
+
+  .card__details p {
+      margin: 1rem;
+  }
+
+  .menulist{
+      width: 100%;
+      background-color: lightblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+
+      @include respond(phone){
+        height: 70vh;
+        font-size: 2.4rem;
+    } 
+  }
+
+  .menu{
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding: 3rem;
+  }
+
+  .menu-item{
+      flex: 0 0 80%;
+  }
+
+  .menu-item-price{
+      flex: 1;
+  }
+
+.footer{
+    width: 80vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    //background-image:     linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0.8));
+    background-color: rgba(51, 51, 51, 0.6);
+}
+
+.footer-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-media-pngs{
+    padding: 2rem;
+    margin: 2rem;
+    border: 2px double white;
+}
+.media-sprite{
+    width: 6rem;
+    height: 6rem;
+    transition: all .4s;
+    background-color: transparent;
+    margin: 1rem;
+}
+
+.media-sprite:hover{
+    box-shadow: 0 .2rem 2rem rgba(0,0,0,.4);
+    background-color: transparent;
+}
+
+
+    
+.bg-video__content{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -100;
+        opacity: .2;
+        object-fit:cover;
+    }
+
+.menu-content{
+    position: relative;
+    width: 80vw;
+    
+}
+
+.content{
+    margin-top: 6rem;
+}
